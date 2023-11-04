@@ -1,6 +1,26 @@
 # open-gimbal
 An open-source gimbal implementation using PX4 autopilot and the ARK cannode
 
+## Setting up the repository and its submodules
+
+Clone this repository:
+
+```bash
+git clone git@github.com:bmelanman/open-gimbal.git
+```
+
+Initialize its submodules:
+
+```bash
+git submodule update --init
+```
+
+Make sure everything is up-to-date:
+
+```bash
+git pull --recurse-submodules
+```
+
 ## Before running the installer:
 
 Ensure that python3 is updated to the latest avaiable releasse for your system. In the case of Ubuntu 18.04 LTS (the recommended installation canidate), a minimum of python3.8 is required. 
@@ -30,12 +50,6 @@ and then manually install the `numpy` python3 package
 
 ```bash
 python3 -m pip install numpy
-```
-
-## Command to clone this repo along with its submodules
-
-```bash
-git clone git@github.com:bmelanman/open-gimbal.git --recursive
 ```
 
 ## Commands to setup PX4-Autopilot
