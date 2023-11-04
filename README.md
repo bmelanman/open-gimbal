@@ -20,6 +20,8 @@ bash ./PX4-Autopilot/Tools/setup/ubuntu.sh
 * Acknowledge any prompts as the script progress.
 * You can use the `--no-nuttx` and `--no-sim-tools` options to omit the NuttX and/or simulation tools.
 
+#### Note : You must restart the computer before the next step!
+
 ### Download the ROS1 script installer:
 
 ```bash
