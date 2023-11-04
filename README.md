@@ -1,6 +1,10 @@
 # open-gimbal
 An open-source gimbal implementation using PX4 autopilot and the ARK cannode
 
+## Before running the installer:
+
+Ensure that python3 is updated to the latest avaiable releasse for your system. In the case of Ubuntu 18.04 LTS (the recommended installation canidate), a minimum of python3.8 is required. 
+
 ## Command to clone this repo along with its submodules
 
 ```bash
