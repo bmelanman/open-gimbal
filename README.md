@@ -5,6 +5,33 @@ An open-source gimbal implementation using PX4 autopilot and the ARK cannode
 
 Ensure that python3 is updated to the latest avaiable releasse for your system. In the case of Ubuntu 18.04 LTS (the recommended installation canidate), a minimum of python3.8 is required. 
 
+If the error
+
+```bash
+"ModuleNotFoundError: No module named 'apt_pkg'" appears in various commands
+```
+
+is encountered after upgrading python3, run the following to fix the issue:
+
+```
+sudo apt remove python3-apt
+sudo apt autoremove
+sudo apt autoclean
+sudo apt install python3-apt
+```
+
+You will also likely need to update the `setuptools` python3 package to the latest avaiable version:
+
+```bash
+python3 -m pip install -U setuptools
+```
+
+and then manually install the `numpy` python3 package
+
+```bash
+python3 -m pip install numpy
+```
+
 ## Command to clone this repo along with its submodules
 
 ```bash
