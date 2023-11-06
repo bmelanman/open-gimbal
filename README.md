@@ -9,21 +9,15 @@ Clone this repository:
 git clone git@github.com:bmelanman/open-gimbal.git
 ```
 
-Initialize its submodules:
+Initialize its submodules and make sure everything is up-to-date:
 
 ```bash
-git submodule update --init
-```
-
-Make sure everything is up-to-date:
-
-```bash
-git pull --recurse-submodules
+git submodule update --init && git pull --recurse-submodules
 ```
 
 ## Before running the installer:
 
-Ensure that python3 is updated to the latest avaiable releasse for your system. In the case of Ubuntu 18.04 LTS (the recommended installation canidate), a minimum of python3.8 is required. 
+Ensure that python3 is updated to the latest avaiable releasse for your system. In the case of Ubuntu 20.04 LTS (the recommended installation canidate), a minimum of python3.8 is required. 
 
 If the error
 
@@ -54,7 +48,7 @@ python3 -m pip install numpy
 
 ## Commands to setup PX4-Autopilot
 
-#### Note: Ubuntu 18.04 LTS is required for the following process. Alternative setup instructions can be found in [PX4's Documentation](https://docs.px4.io/v1.13/en/dev_setup/dev_env).
+#### Note: Ubuntu 20.04 LTS is required for the following process. Alternative setup instructions can be found in [PX4's Documentation](https://docs.px4.io/v1.13/en/dev_setup/dev_env).
 
 ### Run the PX4-Autopilot setup script:
 
