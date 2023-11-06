@@ -12,7 +12,7 @@ git clone git@github.com:bmelanman/open-gimbal.git
 Initialize its submodules and make sure everything is up-to-date:
 
 ```bash
-git submodule update --init && git pull --recurse-submodules
+git submodule update --init --recursive && git pull --recurse-submodules
 ```
 
 ## Before running the installer:
