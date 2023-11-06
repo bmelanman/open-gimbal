@@ -6,7 +6,7 @@ An open-source gimbal implementation using PX4 autopilot and the ARK cannode
 Clone this repository:
 
 ```bash
-git clone git@github.com:bmelanman/open-gimbal.git
+git clone git@github.com:bmelanman/open-gimbal.git && cd open-gimbal
 ```
 
 Initialize its submodules and make sure everything is up-to-date:
