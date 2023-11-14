@@ -1,0 +1,20 @@
+{
+    "version": "0.2",
+    "ignorePaths": [ ],
+    "dictionaryDefinitions": [ ],
+    "dictionaries": [ ],
+    "words": [
+        "bmelanman",
+        "cannode",
+        "dpkg",
+        "libgtk",
+        "libstlink",
+        "libusb",
+        "nuttx",
+        "pandoc",
+        "stlink",
+        "udev"
+    ],
+    "ignoreWords": [ ],
+    "import": [ ]
+}
