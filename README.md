@@ -1,103 +1,46 @@
-# open-gimbal
-An open-source gimbal implementation using PX4 autopilot and the ARK cannode
+# OpenGimbal
 
-### ⚠️ IMPORTANT:
+Now introducing: OpenGimbal - An open-source gimbal implementation utilizing the PX4-Autopilot library.
 
-Due to PX4's very strict installation process, Ubuntu 20.04 LTS is ___required___ for the following guide. 
+![gimbal_gif][_gimbal_gif_path]
 
-These instructions can be followed loosely with the help of PX4's alternative setup instructions, which can be found [HERE](https://docs.px4.io/v1.13/en/dev_setup/dev_env).
+## Reference Design
 
-## Setting up the repository and its submodules
+This design is based on the the [OpenSAM](https://opensamofficial.github.io/OpenSAM/) 3-axis handheld camera gimbal. The slipring components have been adapted from the [Continuous Rotation Lidar Module](https://www.thingiverse.com/thing:1778878).
 
-Clone this repository:
+The gimbal uses two Vertiq 28-06 motor modules to drive the roll and yaw axes, and two* Vertiq 40-06 motor modules to drive the pitch axis. The motors are controlled by an [ARK CANnode](https://arkelectron.com/product/ark-cannode/) module running the PX4-Autopilot  OpenGimbal firmware. Additionally, a [generic 12-wire slipring](https://www.amazon.com/Taidacent-Wires12-Collector-Electrical-Connector/dp/B07NSPHVTN) is used to allow infinite range in the yaw axis.
 
-```bash
-git clone git@github.com:bmelanman/open-gimbal.git && cd open-gimbal
-```
+_*Two motors were used to decrease each motor's load and heat dissipation, however a single motor may suffice depending on the use case and payload weight._
 
-Initialize its submodules and make sure everything is up-to-date:
+The design files, as well as any necessary hardware for assembling the gimbal, can be found in the [reference design folder][_ref_design_path] of this repository.
 
-```bash
-git submodule update --init --recursive && git pull --recurse-submodules
-```
+### Assembly Notes
 
-Fetch the tags from the main PX4 branch (necessary for building):
+Should you choose to print and assemble the provided reference design, keep in mind:
 
-```bash
-git -C ./PX4-Autopilot/ fetch --tags upstream
-```
+- The hardware used in the design was simply what I already had on hand at the time. The design can be easily modified to accommodate different hardware, so I would highly recommend first trying to incorporate any hardware you already have before purchasing any new parts.
 
-## Setting up PX4-Autopilot
+- I highly recommend printing the parts in PETG with a fairly high infill, as the parts need to be quite strong to support the heat and force imparted by the motors (especially on the pitch axis).
 
-### Run the PX4-Autopilot setup script:
+## To Do
 
-```bash
-bash ./PX4-Autopilot/Tools/setup/ubuntu.sh
-```
+* [ ] Enable control over DroneCAN
+* [ ] Enable axis range limits
+* [ ] Add landing detection
+* [ ] Tune rate controller PID values for each axis
+* [ ] Add optional telemetry collection
+* [ ] Add parameters to the reference design to allow for the use of different motors, sliprings, controllers, etc.
+* [ ] "Spruce things up"
 
-* Acknowledge any prompts as the script progresses.
-* You can use the `--no-nuttx` and `--no-sim-tools` options to omit the NuttX and/or simulation tools.
+## Acknowledgements
 
-#### Note : You must restart the computer before the next step!
+* This project was sponsored largely by Alex from [ARK Electronics](https://arkelectron.com/), who provided the ARK CANnode module, the Vertiq motors, and a lot of guidance and support throughout the project. Massive thanks to him for making this project possible!
 
-## Installing ROS Noetic
+* This project is based on the work of [PX4-Autopilot](https://github.com/PX4/PX4-Autopilot), an open source flight control software for drones and other unmanned vehicles, providing a flexible set of tools for drone developers to share technologies to create tailored solutions for drone applications.
 
-Add packages.ros.org to `sources.list` along with its keys:
+* The gimbal design is based on the [OpenSAM](https://opensamofficial.github.io/OpenSAM/) 3-axis handheld camera gimbal. 
 
-```bash
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-```
+* The slipring components have been adapted from the [Continuous Rotation Lidar Module](https://www.thingiverse.com/thing:1778878).
 
-Install ROS Noetic:
-
-```bash
-sudo apt update && sudo apt install -y ros-noetic-ros-base
-```
-
-(Optional) Add the setup script to `~/.bashrc`:
-
-```bash
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && source ~/.bashrc
-```
-
-## Installing STLink
-
-Install necessary libraries:
-
-```bash
-sudo apt install -y libusb-1.0 libusb-1.0-0-dev
-```
-
-Clone the STLink repo:
-
-```bash
-git clone https://github.com/stlink-org/stlink.git ~/stlink
-cd ~/stlink
-```
-
-Build a debian package:
-
-```bash
-make clean package
-```
-
-Make sure `libstlink1` definitely isn't installed (it can mess everything up), and install the STLink package:
-
-```bash
-sudo apt remove --purge -y libstlink1 stlink
-sudo dpkg -i ./build/dist/*.deb
-```
-
-Finally, copy over the device connection rules:
-
-```bash
-sudo cp config/udev/rules.d/* /etc/udev/rules.d/
-sudo cp config/modprobe.d/* /etc/modprobe.d/
-```
-
-To make sure everything works, the following command should report the number of currently connected STLink programmers:
-
-```bash
-st-info --probe
-```
+[_ref_design_path]: resources/reference_design
+[_gimbal_gif_path]: resources/ezgif-2-9b316f240c.gif
