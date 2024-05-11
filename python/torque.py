@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # --- Input Parameters --- #
 
 # Payload envelope Dimensions in `m`
@@ -90,7 +92,7 @@ def calculate_stationary_torque():
 
     # Pitch axis:
     # Note: This is the only motor acting against gravity
-    t_pitch_static = I_pitch * (g / r_roll)
+    t_pitch_static = g * motor_mass * r_roll
     t_pitch_payload = I_pitch * a
     t_pitch = t_pitch_static + t_pitch_payload
 
