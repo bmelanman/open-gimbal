@@ -43,4 +43,4 @@ Should you choose to print and assemble the provided reference design, keep in m
 * The slipring components have been adapted from the [Continuous Rotation Lidar Module](https://www.thingiverse.com/thing:1778878).
 
 [_ref_design_path]: resources/reference_design
-[_gimbal_gif_path]: resources/ezgif-2-9b316f240c.gif
+[_gimbal_gif_path]: resources/open-gimbal-chassis.gif
